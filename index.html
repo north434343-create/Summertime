@@ -388,7 +388,7 @@ function updatePeriod() {
 function updateDates() {
   const now = new Date();
   document.getElementById("gregorianDate").textContent =
-    now.toLocaleDateString("ar-SA", { day: "numeric", month: "long", year: "numeric" });
+    now.toLocaleDateString("ar-SA-u-ca-gregory", { day: "numeric", month: "long", year: "numeric" });
   document.getElementById("hijriDate").textContent =
     now.toLocaleDateString("ar-SA-u-ca-islamic", { day: "numeric", month: "long", year: "numeric" });
 }
