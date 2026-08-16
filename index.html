@@ -8,12 +8,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg-color: #fdfdf7; /* خلفية فاتحة مائلة للكريمي */
+    --bg-color: #006C35; /* خلفية فاتحة مائلة للكريمي */
     --moe-green: #006C35; /* لون الوزارة الأخضر */
     --gold-accent: #c5a059; /* لون ذهبي هادئ للفاصل */
     --card-bg-green: #f0f7f4; /* خلفية بطاقة خضراء فاتحة */
     --card-bg-gold: #fdf8eb; /* خلفية بطاقة ذهبية فاتحة */
     --text-dark: #1a4d32; /* لون نص أخضر غامق */
+
+    /* ── إعدادات التصميم القابلة للتعديل من مكان واحد ── */
+    --page-padding-block: clamp(12px, 3vh, 32px);
+    --page-padding-inline: clamp(12px, 4vw, 40px);
+    --page-gap: clamp(8px, 1.5vh, 20px);
+    --content-max-width: 480px;
+    --logo-width: clamp(190px, 16vw, 120px);
+    --logo-section-gap: clamp(0px, 1.2vh, 12px);
+    --logo-section-margin: 0;
+    --school-name-font-size: clamp(26px, 4vw, 24px);
+    --school-name-color: #f0f7f4; /* لون اسم المدرسة فقط */
+    --school-name-margin-top: 5px;
+    --divider-height: 2px;
+    --divider-margin-block: 5px;
+    --clock-size: clamp(250px, 30vw, 180px);
+    --clock-background-color: #e8f3ec; /* لون خلفية ساعة العقارب */
+    --clock-background-radius: 50%;
+    --clock-section-gap: clamp(4px, 1vh, 8px);
+    --clock-section-margin: 0;
+    --digital-time-font-size: clamp(28px, 5vw, 28px);
+    --digital-time-color: #f0f7f4; /* لون الساعة الرقمية فقط */
+    --digital-time-margin-top: 5px;
+    --card-margin: 0;
+    --card-radius: 18px;
+    --card-padding-block: clamp(10px, 2vh, 15px);
+    --card-padding-inline: clamp(12px, 3vw, 20px);
+    --card-label-font-size: clamp(21px, 2.5vw, 13px);
+    --card-label-margin-bottom: 6px;
+    --card-value-font-size: clamp(26px, 4vw, 22px);
+    --period-time-font-size: clamp(16px, 2.5vw, 14px);
+    --period-time-margin-top: 4px;
+    --remaining-font-size: clamp(28px, 7vw, 42px);
+    --dates-row-gap: clamp(8px, 2vw, 12px);
+    --dates-row-margin: 0;
+
+    /* إعدادات رسم الساعة الداخلية */
+    --clock-border-width: 3;
+    --clock-major-mark-width: 3;
+    --clock-minor-mark-width: 1.5;
+    --clock-hour-hand-width: 6;
+    --clock-minute-hand-width: 4;
+    --clock-second-hand-width: 2;
+    --clock-center-radius: 6;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +69,7 @@
     font-family: 'Cairo', sans-serif;
     background-color: var(--bg-color);
     /* إضافة لمسة فنية في الأسفل مثل الصورة */
-    background-image: radial-gradient(circle at bottom, #e2eee6 0%, transparent 40%);
+    /*background-image: radial-gradient(circle at bottom, #e2eee6 0%, transparent 40%);*/
     color: var(--text-dark);
     min-height: 100vh;
     overflow-x: hidden;
@@ -34,8 +77,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: clamp(12px, 3vh, 32px) clamp(12px, 4vw, 40px);
-    gap: clamp(8px, 1.5vh, 20px);
+    padding: var(--page-padding-block) var(--page-padding-inline);
+    gap: var(--page-gap);
   }
 
   /* حاوية عامة لضبط أقصى عرض على الشاشات الكبيرة */
@@ -43,7 +86,7 @@
   .clock-section,
   .card,
   .dates-row {
-    max-width: 480px;
+    max-width: var(--content-max-width);
   }
 
   /* ── شعار المدرسة ── */
@@ -51,12 +94,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(6px, 1.2vh, 12px);
+    gap: var(--logo-section-gap);
     width: 100%;
+    margin: var(--logo-section-margin);
   }
 
   .school-logo {
-    width: clamp(70px, 16vw, 120px);
+    width: var(--logo-width);
     height: auto;
     display: flex;
     align-items: center;
@@ -70,20 +114,20 @@
   }
 
   .school-name {
-    font-size: clamp(16px, 4vw, 24px);
+    font-size: var(--school-name-font-size);
     font-weight: 800;
     text-align: center;
-    color: var(--moe-green);
-    margin-top: 5px;
+    color: var(--school-name-color);
+    margin-top: var(--school-name-margin-top);
   }
 
   /* ── فاصل ذهبي ── */
   .divider {
     width: 100%;
-    max-width: 480px;
-    height: 2px;
+    max-width: var(--content-max-width);
+    height: var(--divider-height);
     background-color: var(--gold-accent);
-    margin: 5px 0;
+    margin: var(--divider-margin-block) 0;
   }
 
   /* ── الساعة العقارب ── */
@@ -91,13 +135,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: clamp(4px, 1vh, 8px);
+    gap: var(--clock-section-gap);
     width: 100%;
+    margin: var(--clock-section-margin);
   }
 
   .clock-canvas-wrap {
-    width: clamp(110px, 30vw, 180px);
+    width: var(--clock-size);
     aspect-ratio: 1 / 1; /* للمتصفحات الحديثة */
+    background-color: var(--clock-background-color);
+    border-radius: var(--clock-background-radius);
   }
 
   /* احتياط لمتصفحات لا تدعم aspect-ratio (مثل بعض أجهزة العرض/Yodeck):
@@ -110,17 +157,18 @@
   }
 
   .digital-time {
-    font-size: clamp(18px, 5vw, 28px);
+    font-size: var(--digital-time-font-size);
     font-weight: 800;
-    color: var(--text-dark);
+    color: var(--digital-time-color);
     font-variant-numeric: tabular-nums;
-    margin-top: 5px;
+    margin-top: var(--digital-time-margin-top);
   }
 
   /* ── الحصة والبطاقات ── */
   .card {
-    border-radius: 18px;
-    padding: clamp(10px, 2vh, 15px) clamp(12px, 3vw, 20px);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding-block) var(--card-padding-inline);
+    margin: var(--card-margin);
     width: 100%;
     text-align: center;
     border: 1px solid rgba(0,0,0,0.05);
@@ -146,27 +194,27 @@
   }
 
   .card-label {
-    font-size: clamp(11px, 2.5vw, 13px);
+    font-size: var(--card-label-font-size);
     color: var(--moe-green);
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: var(--card-label-margin-bottom);
   }
 
   .card-value {
-    font-size: clamp(16px, 4vw, 22px);
+    font-size: var(--card-value-font-size);
     font-weight: 800;
     color: var(--text-dark);
   }
 
   .period-time {
-    font-size: clamp(11px, 2.5vw, 14px);
+    font-size: var(--period-time-font-size);
     color: #666;
-    margin-top: 4px;
+    margin-top: var(--period-time-margin-top);
   }
 
   /* ── الوقت المتبقي ── */
   #remaining {
-    font-size: clamp(28px, 7vw, 42px);
+    font-size: var(--remaining-font-size);
     font-weight: 800;
     color: var(--text-dark);
   }
@@ -177,8 +225,9 @@
   /* ── التواريخ ── */
   .dates-row {
     display: flex;
-    gap: clamp(8px, 2vw, 12px);
+    gap: var(--dates-row-gap);
     width: 100%;
+    margin: var(--dates-row-margin);
   }
 
   .dates-row .card {
@@ -196,7 +245,7 @@
 <!-- شعار واسم المدرسة -->
 <div class="logo-section">
   <div class="school-logo">
-    <img src="https://upload.wikimedia.org/wikipedia/ar/1/17/Saudi_Ministry_of_Education_Logo_2025.png?_=20251102000021" alt="Logo">
+    <img src="https://www.moe.gov.sa/_layouts/15/Portal/Images/Logo.svg?v=2" alt="Logo">
   </div>
   <div class="school-name">ابتدائية الأحنف بن قيس</div>
 </div>
@@ -292,9 +341,21 @@ function resizeCanvasForDPR(canvas) {
   canvas.dataset.lastDpr = String(dpr);
 }
 
+function getCssNumber(name, fallback) {
+  const value = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+  return Number.isFinite(value) ? value : fallback;
+}
+
 function drawAnalogClock(canvas) {
   resizeCanvasForDPR(canvas);
   const ctx = canvas.getContext("2d");
+  const clockBorderWidth = getCssNumber("--clock-border-width", 3);
+  const clockMajorMarkWidth = getCssNumber("--clock-major-mark-width", 3);
+  const clockMinorMarkWidth = getCssNumber("--clock-minor-mark-width", 1.5);
+  const clockHourHandWidth = getCssNumber("--clock-hour-hand-width", 6);
+  const clockMinuteHandWidth = getCssNumber("--clock-minute-hand-width", 4);
+  const clockSecondHandWidth = getCssNumber("--clock-second-hand-width", 2);
+  const clockCenterRadius = getCssNumber("--clock-center-radius", 6);
   const rect = canvas.getBoundingClientRect();
   const W = rect.width || 150, H = W;
   const cx = W / 2, cy = H / 2, r = W / 2 - 8;
@@ -307,7 +368,7 @@ function drawAnalogClock(canvas) {
   ctx.beginPath();
   ctx.arc(cx, cy, r, 0, 2 * Math.PI);
   ctx.strokeStyle = "#006C35";
-  ctx.lineWidth = 3;
+  ctx.lineWidth = clockBorderWidth;
   ctx.stroke();
 
   // علامات الساعات
@@ -319,7 +380,7 @@ function drawAnalogClock(canvas) {
     ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
     ctx.lineTo(cx + Math.cos(a) * (r - 5), cy + Math.sin(a) * (r - 5));
     ctx.strokeStyle = "#006C35";
-    ctx.lineWidth = isMajor ? 3 : 1.5;
+    ctx.lineWidth = isMajor ? clockMajorMarkWidth : clockMinorMarkWidth;
     ctx.stroke();
   }
 
@@ -337,13 +398,13 @@ function drawAnalogClock(canvas) {
   const minAngle = ((min + sec / 60) / 60) * 2 * Math.PI - Math.PI / 2;
   const secAngle = (sec / 60) * 2 * Math.PI - Math.PI / 2;
 
-  drawHand(hrAngle,  r * 0.50, 6, "#1a4d32"); // عقرب الساعة
-  drawHand(minAngle, r * 0.75, 4, "#1a4d32"); // عقرب الدقائق
-  drawHand(secAngle, r * 0.85, 2, "#c5a059"); // عقرب الثواني (ذهبي)
+  drawHand(hrAngle,  r * 0.50, clockHourHandWidth, "#1a4d32"); // عقرب الساعة
+  drawHand(minAngle, r * 0.75, clockMinuteHandWidth, "#1a4d32"); // عقرب الدقائق
+  drawHand(secAngle,  r * 0.85, clockSecondHandWidth, "#c5a059"); // عقرب الثواني (ذهبي)
 
   // مركز الساعة
   ctx.beginPath();
-  ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
+  ctx.arc(cx, cy, clockCenterRadius, 0, 2 * Math.PI);
   ctx.fillStyle = "#c5a059";
   ctx.fill();
 }
@@ -388,7 +449,7 @@ function updatePeriod() {
 function updateDates() {
   const now = new Date();
   document.getElementById("gregorianDate").textContent =
-    now.toLocaleDateString("ar-SA-u-ca-gregory", { day: "numeric", month: "long", year: "numeric" });
+    now.toLocaleDateString("ar-SA", { day: "numeric", month: "long", year: "numeric" });
   document.getElementById("hijriDate").textContent =
     now.toLocaleDateString("ar-SA-u-ca-islamic", { day: "numeric", month: "long", year: "numeric" });
 }
